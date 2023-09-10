@@ -19,12 +19,6 @@ export async function POST(request: Request) {
       cancel_url: "http://localhost:3000",
     });
 
-    // console.log(session);
-    // stripeId    Int   @id @default(autoincrement())
-    // audienceName String
-    // seatType String
-    // email String @unique
-
     return NextResponse.json(session.url);
   } catch (err) {
     console.log(err);
