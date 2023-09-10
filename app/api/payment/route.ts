@@ -3,12 +3,12 @@ import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
+  apiVersion: "2023-08-16",
+});
 
 export async function POST(request: Request) {
   try {
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
-      apiVersion: "2023-08-16",
-    });
     let data = await request.json();
     let priceId = data.priceId;
     const session = await stripe.checkout.sessions.create({
