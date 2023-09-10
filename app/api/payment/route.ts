@@ -1,13 +1,11 @@
 import { NextResponse } from "next/server";
 import { StripeICNObject } from "../(helpers)/stripeInitializer";
 
-const stripe = StripeICNObject;
-
 export async function POST(request: Request) {
   try {
     let data = await request.json();
     let priceId = data.priceId;
-    const session = await stripe.checkout.sessions.create({
+    const session = await StripeICNObject.checkout.sessions.create({
       line_items: [
         {
           price: priceId,
