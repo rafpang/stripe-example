@@ -4,9 +4,11 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-export async function POST(request) {
+export async function POST(request: Request) {
   try {
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
+      apiVersion: "2023-08-16",
+    });
     let data = await request.json();
     let priceId = data.priceId;
     const session = await stripe.checkout.sessions.create({
