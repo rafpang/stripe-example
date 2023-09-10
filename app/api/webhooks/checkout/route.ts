@@ -1,7 +1,7 @@
 import { headers } from "next/headers";
 import Stripe from "stripe";
 import { StripeICNObject } from "../../(helpers)/stripeInitializer";
-import { insertToAudienceTable } from "../../(helpers)/database";
+import { insertToAudienceTable } from "../../(helpers)/databaseFunctions";
 import { Audience } from "@prisma/client";
 import { NextResponse } from "next/server";
 
