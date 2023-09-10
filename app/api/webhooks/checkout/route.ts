@@ -6,7 +6,7 @@ import { Audience } from "@prisma/client";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
-  // rafpang: Stripe requires raw body for webhooks
+  // rafpang: Stripe requires raw text body for webhooks
   const body = await req.text();
   const signature: string = headers().get("Stripe-Signature") as string;
 
