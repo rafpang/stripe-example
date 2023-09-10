@@ -1,0 +1,16 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Audience {
+  stripeId    String   @id 
+  audienceName String 
+  seatType String 
+  email String @unique
+
+}
