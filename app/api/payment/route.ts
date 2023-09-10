@@ -1,11 +1,7 @@
-import Stripe from "stripe";
 import { NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
+import { StripeICNObject } from "../(helpers)/stripeInitializer";
 
-const prisma = new PrismaClient();
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
-  apiVersion: "2023-08-16",
-});
+const stripe = StripeICNObject;
 
 export async function POST(request: Request) {
   try {
@@ -28,14 +24,6 @@ export async function POST(request: Request) {
     // audienceName String
     // seatType String
     // email String @unique
-    const user = await prisma.audience.create({
-      data: {
-        stripeId: session.id,
-        audienceName: "pang",
-        seatType: "pang",
-        email: "pang@example.com",
-      },
-    });
 
     return NextResponse.json(session.url);
   } catch (err) {
